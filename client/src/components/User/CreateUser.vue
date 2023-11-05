@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h1>Create User</h1>
-    <form v-on:submit.prevent = "createUser">
-      <p>ชื่อ: <input type="text" v-model="user.name"></p>
-      <p>นามสกุล: <input type="text" v-model="user.lastname"></p>
-      <p>email: <input type="text" v-model="user.email"></p>
+    <h1>Create belt</h1>
+    <form v-on:submit.prevent="createUser">
+      <p>id: <input type="num" v-model="user.id"></p>
       <p>password: <input type="text" v-model="user.password"></p>
-      <p><button type="submit">create user</button></p>
+      <p>name: <input type="text" v-model="user.name"></p>
+      <p>brand: <input type="text" v-model="user.brand"></p>
+      <p>price: <input type="num" v-model="user.price"></p>
+      <p>length: <input type="text" v-model="user.length"></p>
+      <p><button type="submit">create belt</button></p>
     </form>
   </div>
 </template>
@@ -18,20 +20,21 @@ export default {
   data() {
     return {
       user: {
-        name: "",
-        lastname: "",
-        email: "",
+        id: "",
         password: "",
-        status: "active"
+        name: "",
+        brand: "",
+        price: "",
+        length: ""
       }
     };
   },
   methods: {
-    async createUser(){
-      try{
+    async createUser() {
+      try {
         await UsersService.post(this.user)
         this.$router.push('/users')
-      }catch(err){
+      } catch (err) {
         console.log(err)
       }
     }
